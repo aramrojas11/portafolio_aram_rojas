@@ -22,11 +22,11 @@ export function HeroContent() {
       </div>
 
       {/* Subtítulo y CTA (Mejoras) */}
-      <p className="mt-8 max-w-xl text-center text-lg text-muted-foreground">
+      <p className="mt-8 max-w-xl text-center text-lg text-white-muted-foreground">
         Construyendo experiencias web performantes y accesibles,
         combinando diseño y funcionalidad.
       </p>
-      
+
       <Button asChild size="lg" className="mt-8 font-semibold">
         <Link href="#proyectos">
           Ver mis Proyectos

@@ -1,68 +1,81 @@
 // app/components/Header.tsx
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
-import { Button } from './ui/button';
-import { SiGithub, SiLinkedin } from 'react-icons/si'; // Importamos desde react-icons/si
+import { Button } from '@/components/ui/button';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full p-4 sm:px-8">
-      {/* Usamos max-w-6xl y mx-auto para centrar y limitar el ancho en pantallas grandes */}
+      {/* 
+        Ajustes de altura: 
+        - Agregamos 'items-center' para centrar todo verticalmente.
+      */}
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
-
-        {/* Logo (Mejorado con imagen en lugar de texto) */}
+        
+        {/* Logo (Tamaño 140px y cambio de tema) */}
         <Link
           href="/"
-          className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-foreground transition-transform hover:scale-105"
+          className="flex h-[60px] w-[60px] items-center justify-center rounded-full border-2 border-foreground transition-transform hover:scale-105 dark:bg-white dark:border-white"
           aria-label="Volver al inicio"
         >
+          {/* Logo para Modo Claro */}
           <img
             src="/LogoWhite.png"
             alt="Logo"
-            className="h-8 w-8 object-contain"
+            className="h-[100px] w-[100px] object-contain dark:hidden"
+          />
+          {/* Logo para Modo Oscuro */}
+          <img
+            src="/LogoBlack.png"
+            alt="Logo"
+            className="hidden h-[100px] w-[100px] object-contain dark:block"
           />
         </Link>
 
-        {/* Navegación Principal (Mejorada de tu boceto) */}
-        {/* Oculta en móvil (hidden), se muestra en pantallas sm y mayores (sm:flex) */}
-        <div className="hidden items-center gap-1 rounded-full border border-foreground/20 bg-background/50 p-1 backdrop-blur-sm sm:flex">
-          <Button asChild variant="ghost" size="sm" className="rounded-full font-medium">
+        {/* Navegación Principal (Tamaño 140px) */}
+        <div 
+          className="hidden h-[60px] items-center gap-2 rounded-full border border-foreground/20 bg-background/50 p-4 backdrop-blur-sm sm:flex"
+        >
+          {/* Botones más grandes */}
+          <Button asChild variant="ghost" className="rounded-full font-medium text-lg px-6 py-3">
             <Link href="#inicio">Inicio</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="rounded-full text-muted-foreground">
+          <Button asChild variant="ghost" className="rounded-full text-muted-foreground text-lg px-6 py-3">
             <Link href="#experiencia">Experiencia</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="rounded-full text-muted-foreground">
+          <Button asChild variant="ghost" className="rounded-full text-muted-foreground text-lg px-6 py-3">
             <Link href="#proyectos">Proyectos</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="rounded-full text-muted-foreground">
+          <Button asChild variant="ghost" className="rounded-full text-muted-foreground text-lg px-6 py-3">
             <Link href="#contacto">Contacto</Link>
           </Button>
         </div>
 
-        {/* Iconos Sociales y Tema */}
-        <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="icon" className="w-9 h-9">
+        {/* Iconos Sociales y Tema (Alineados y más grandes) */}
+        <div className="flex h-[100px] items-center gap-4">
+          {/* Botones de ícono más grandes (56px) */}
+          <Button asChild variant="outline" size="icon" className="h-56px w-56px">
             <a
               href="https://github.com/tu-usuario" // Reemplaza con tu URL
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Perfil de GitHub"
             >
-              <SiGithub className="h-[1.1rem] w-[1.1rem]" />
+              <SiGithub className="h-6 w-6" /> {/* Icono más grande */}
             </a>
           </Button>
-          <Button asChild variant="outline" size="icon" className="w-9 h-9">
+          <Button asChild variant="outline" size="icon" className="h-56px w-56px">
             <a
               href="https://linkedin.com/in/tu-usuario" // Reemplaza con tu URL
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Perfil de LinkedIn"
             >
-              <SiLinkedin className="h-[1.1rem] w-[1.1rem]" />
+              <SiLinkedin className="h-6 w-6" /> {/* Icono más grande */}
             </a>
           </Button>
-          <ThemeToggle />
+          <ThemeToggle /> {/* Se actualizará en el siguiente archivo */}
         </div>
       </nav>
     </header>

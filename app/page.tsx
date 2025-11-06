@@ -1,6 +1,7 @@
 // app/page.tsx
 import { Header } from '@/components/Header';
 import { HeroContent } from '@/components/HeroContent';
+// import { Experience } from '@/components/Experience';
 
 export default function Home() {
   return (

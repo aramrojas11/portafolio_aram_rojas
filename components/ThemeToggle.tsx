@@ -27,7 +27,7 @@ export function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
-      className="w-9 h-9" // Tamaño de ícono estándar
+      className="w-9 h-9 border-2 border-white" // Tamaño de ícono estándar
       onClick={() => setTheme(isDark? 'light' : 'dark')}
       aria-label={isDark? 'Activar modo claro' : 'Activar modo oscuro'}
     >

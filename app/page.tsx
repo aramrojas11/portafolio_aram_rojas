@@ -10,7 +10,6 @@ export default function Home() {
       {/* --- Contenedor del Fondo --- */}
       <div className="absolute inset-0 -z-10 h-full w-full">
         {/* Fondo de Video (Solo visible en MODO OSCURO) */}
-        {/* 'hidden' por defecto, 'dark:block' lo muestra solo en modo oscuro */}
         <video
           autoPlay
           loop
@@ -24,18 +23,45 @@ export default function Home() {
         </video>
 
         {/* Fondo Sólido (Solo visible en MODO CLARO) */}
-        {/* 'block' por defecto, 'dark:hidden' lo oculta en modo oscuro */}
         <div className="absolute inset-0 h-full w-full bg-background dark:hidden"></div>
       </div>
-      {/* --- Fin del Contenedor del Fondo --- */}
 
-      {/* Contenido Principal */}
       <Header />
+      {/* Contenido Principal */}
       <main
-        id="inicio"
-        className="flex flex-1 items-center justify-center p-4"
+        className="flex-1 w-full p-4" 
       >
-        <HeroContent />
+        {/* Este div es la clave. Se alinea con el 'max-w-6xl' del nav en Header.tsx */}
+        <div className="w-full max-w-6xl mx-auto">
+          
+          {/* Sección de Inicio */}
+          <section
+            id="inicio"
+            className="flex items-center justify-center"
+            // Le damos una altura mínima para que el 'Hero' se vea centrado verticalmente
+            // (100vh) - (altura aprox. del header). Ajusta '90vh' o '80px' si es necesario.
+            style={{ minHeight: 'calc(90vh - 80px)' }} 
+          >
+            <HeroContent />
+          </section>
+
+          {/* Aquí añadirás tus futuras secciones, y ya estarán alineadas */}
+          
+          <section id="experiencia" className="py-24">
+            {/* Cuando crees app/components/Experience.tsx, lo pondrás aquí */}
+            {/* <Experience /> */}
+            <h2 className="text-3xl text-center font-bold">Experiencia (Próximamente)</h2>
+          </section>
+
+          <section id="proyectos" className="py-24">
+            <h2 className="text-3xl text-center font-bold">Proyectos (Próximamente)</h2>
+          </section>
+
+          <section id="contacto" className="py-24">
+            <h2 className="text-3xl text-center font-bold">Contacto (Próximamente)</h2>
+          </section>
+
+        </div>
       </main>
     </div>
   );

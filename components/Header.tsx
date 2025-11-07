@@ -13,29 +13,29 @@ export function Header() {
       */}
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
         
-        {/* Logo (Tamaño 140px y cambio de tema) */}
+        {/* Logo (Tamaño 60px y borde invertido) */}
         <Link
           href="/"
-          className="flex h-[60px] w-[60px] items-center justify-center rounded-full border-2 border-foreground transition-transform hover:scale-105 dark:bg-white dark:border-white"
+          className="flex h-[60px] w-[60px] items-center justify-center rounded-full border-2 border-foreground transition-transform hover:scale-105 overflow-hidden" // <-- CLASES MODIFICADAS
           aria-label="Volver al inicio"
         >
           {/* Logo para Modo Claro */}
           <img
             src="/LogoWhite.png"
             alt="Logo"
-            className="h-[100px] w-[100px] object-contain dark:hidden"
+            className="h-10 w-10 object-contain dark:hidden" // <-- TAMAÑO CORREGIDO
           />
           {/* Logo para Modo Oscuro */}
           <img
             src="/LogoBlack.png"
             alt="Logo"
-            className="hidden h-[100px] w-[100px] object-contain dark:block"
+            className="hidden h-10 w-10 object-contain dark:block" // <-- TAMAÑO CORREGIDO
           />
         </Link>
 
         {/* Navegación Principal (Tamaño 140px) */}
         <div 
-          className="hidden h-[60px] items-center gap-2 rounded-full border border-foreground/20 bg-background/50 p-4 backdrop-blur-sm sm:flex"
+          className="hidden h-[60px] items-center gap-2 rounded-full border-2 border-foreground bg-background/50 p-4 backdrop-blur-sm sm:flex"
         >
           {/* Botones más grandes */}
           <Button asChild variant="ghost" className="rounded-full font-medium text-lg px-6 py-3">
@@ -55,7 +55,7 @@ export function Header() {
         {/* Iconos Sociales y Tema (Alineados y más grandes) */}
         <div className="flex h-[100px] items-center gap-4">
           {/* Botones de ícono más grandes (56px) */}
-          <Button asChild variant="outline" size="icon" className="h-56px w-56px">
+          <Button asChild variant="outline" size="icon" className="h-56px w-56px border-2 border-white">
             <a
               href="https://github.com/tu-usuario" // Reemplaza con tu URL
               target="_blank"
@@ -65,7 +65,7 @@ export function Header() {
               <SiGithub className="h-6 w-6" /> {/* Icono más grande */}
             </a>
           </Button>
-          <Button asChild variant="outline" size="icon" className="h-56px w-56px">
+          <Button asChild variant="outline" size="icon" className="h-56px w-56px border-2 border-foreground">
             <a
               href="https://linkedin.com/in/tu-usuario" // Reemplaza con tu URL
               target="_blank"

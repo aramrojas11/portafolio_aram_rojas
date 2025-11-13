@@ -79,7 +79,7 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
+  --background: oklch(0 0 0); 
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
@@ -124,14 +124,10 @@
   }
   /* Estilos para el MouseFollower */
   .mouse-follower {
-    /* ---- INICIO DE CAMBIOS ---- */
-    /* Base en la esquina superior izquierda */
+    position: fixed;
     left: 0;
     top: 0;
-    /* El tamaño (width/height) se define en MouseFollower.tsx */
-    /* El transform se define en MouseFollower.tsx */
-    /* ---- FIN DE CAMBIOS ---- */
-    
+    z-index: 9999; /* <-- AÑADE ESTO */
     background-color: theme('colors.primary');
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(theme('colors.primary'), 0.5); 

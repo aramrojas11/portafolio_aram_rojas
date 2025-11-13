@@ -1,6 +1,7 @@
 // app/page.tsx
 import { Header } from '@/components/Header';
 import { HeroContent } from '@/components/HeroContent';
+import { MouseFollower } from '@/components/MouseFollower'; // <-- IMPORTAR
 // import { Experience } from '@/components/Experience';
 
 export default function Home() {
@@ -63,6 +64,7 @@ export default function Home() {
 
         </div>
       </main>
+      <MouseFollower />
     </div>
   );
 }

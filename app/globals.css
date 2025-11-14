@@ -79,7 +79,7 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
+  --background: oklch(0 0 0); 
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
@@ -114,12 +114,33 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
   }
   html {
-    @apply scroll-smooth;
+    scrollbar-width: none; /* 'none' oculta completamente el scrollbar */
+  }
+  /* Estilos para el MouseFollower */
+  .mouse-follower {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999; /* <-- AÑADE ESTO */
+    background-color: theme('colors.red.500');
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(theme('colors.red.500'), 0.5); 
+    pointer-events: none; /* Para que no interfiera con otros elementos */
+    width: 20px;    
+    /* Esta transición es para cuando cambias su tamaño (ej. al hacer hover) */
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Opcional: Agrandar el cursor cuando esté sobre enlaces o botones */
+  a:hover + .mouse-follower,
+  button:hover + .mouse-follower {
+    width: 40px;
+    height: 40px;
   }
 }

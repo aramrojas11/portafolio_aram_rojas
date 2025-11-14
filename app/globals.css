@@ -128,11 +128,11 @@
     left: 0;
     top: 0;
     z-index: 9999; /* <-- AÑADE ESTO */
-    background-color: theme('colors.primary');
+    background-color: theme('colors.red.500');
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(theme('colors.primary'), 0.5); 
-    mix-blend-mode: exclusion;
-    
+    box-shadow: 0 0 10px rgba(theme('colors.red.500'), 0.5); 
+    pointer-events: none; /* Para que no interfiera con otros elementos */
+    width: 20px;    
     /* Esta transición es para cuando cambias su tamaño (ej. al hacer hover) */
     transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
   }

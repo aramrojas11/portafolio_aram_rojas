@@ -73,7 +73,7 @@ export function HeroContent() {
         variants={textItemVariants}
       >
         {/* TAMAÑO RESPONSIVO para Slogan */}
-        <p className="text-4xl sm:text-5xl lg:text-8xl font-extrabold font-heading text-foreground uppercase">
+        <p className="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-heading text-foreground uppercase">
           PROYECTOS CON IMPACTO,<br />
           SOLUCIONES HECHAS A TU MEDIDA.
         </p>

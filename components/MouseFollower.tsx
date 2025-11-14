@@ -41,7 +41,7 @@ export function MouseFollower() {
       transition={{
         type: 'spring',
         mass: 0.05, // Más ligero
-        stiffness: 200, // Más rápido
+        stiffness: 80, // Más rápido
         damping: 10, // Menos rebote
         delay: 0,
       }}

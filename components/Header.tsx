@@ -80,12 +80,12 @@ export function Header() {
 
         <div className="flex flex-col items-center gap-4">
           <Button asChild variant="outline" size="icon" className="w-9 h-9 border-2 border-foreground">
-            <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/aramrojas11" target="_blank" rel="noopener noreferrer">
               <SiGithub className="h-6 w-6" />
             </a>
           </Button>
           <Button asChild variant="outline" size="icon" className="w-9 h-9 border-2 border-foreground">
-            <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer">
+            <a href="https://linkedin.com/in/aram-rojas-182436277" target="_blank" rel="noopener noreferrer">
               <SiLinkedin className="h-6 w-6" />
             </a>
           </Button>
@@ -99,10 +99,10 @@ export function Header() {
           <>
             {/* Fondo semitransparente (detecta clic para cerrar) */}
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.3 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             />
 
@@ -113,7 +113,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.35, ease: 'easeInOut' }}
-              className="fixed top-0 right-0 h-full w-[70%] sm:w-[50%] bg-background/95 backdrop-blur-md p-8 flex flex-col items-end gap-6 shadow-lg z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-[50%] sm:w-[50%] bg-background/95 backdrop-blur-md p-8 flex flex-col items-end gap-6 shadow-lg z-50 md:hidden"
             >
               {['inicio', 'experiencia', 'proyectos', 'contacto'].map((id) => (
                 <Link

@@ -39,13 +39,13 @@ export function HeroContent() {
         variants={textItemVariants}
       >
         {/* TAMAÑO RESPONSIVO para el Nombre */}
-        <h1 className="text-5xl sm:text-7xl lg:text-9xl font-extrabold font-heading text-foreground">
+        <h1 className="text-4xl sm:text-7xl lg:text-9xl font-extrabold font-heading text-foreground">
           ARAM ROJAS
         </h1>
         
         {/* Línea divisoria */}
         <motion.div 
-          className="w-full h-[5px] bg-foreground my-4 lg:h-[10px]" // Más delgada en móvil
+          className="w-full h-[5px] bg-foreground my-4 lg:h-2.5" // Más delgada en móvil
           initial={{ width: 0 }}
           animate={{ width: '70%' }}
           transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
@@ -69,7 +69,7 @@ export function HeroContent() {
       {/* ---- 3. BLOQUE DEL SLOGAN ---- */}
       <motion.div
         // En 'lg' (desktop): 'absolute', 'bottom-16', 'right-16', 'text-right'
-        className="relative z-10 mt-auto text-left lg:absolute lg:mt-0 lg:bottom-16 lg:right-16 lg:text-right"
+        className="relative z-10 mt-auto text-left lg:absolute lg:mt-0 lg:bottom-16 lg:right-65 lg:text-right"
         variants={textItemVariants}
       >
         {/* TAMAÑO RESPONSIVO para Slogan */}

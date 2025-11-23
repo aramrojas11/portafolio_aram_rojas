@@ -1,8 +1,11 @@
 // app/page.tsx
 import Header from "@/components/Header";
 import { HeroContent } from "@/components/HeroContent";
-import { MouseFollower } from "@/components/MouseFollower"; 
-import Experience from "@/components/Experience"; 
+import { MouseFollower } from "@/components/MouseFollower";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects"; // <--- IMPORTAR
+import Contact from "@/components/Contact"; // <--- IMPORTAR
+
 
 export default function Home() {
   return (
@@ -21,12 +24,12 @@ export default function Home() {
           <Experience /> {/* <--- Agregamos la sección aquí */}
           <section id="proyectos" className="py-24">
             <h2 className="text-3xl text-center font-bold">
-              Proyectos (Próximamente)
+              <Projects /> {/* <--- AÑADIR AQUI */}
             </h2>
           </section>
           <section id="contacto" className="py-24">
             <h2 className="text-3xl text-center font-bold">
-              Contacto (Próximamente)
+              <Contact /> {/* <--- AÑADIR COMPONENTE REAL */}{" "}
             </h2>
           </section>
         </div>

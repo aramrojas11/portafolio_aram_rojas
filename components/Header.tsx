@@ -128,13 +128,13 @@ export default function Header() {
               {/* Logo Image */}
               <div className="relative w-12 h-12 z-30 overflow-hidden rounded-full bg-background">
                 <Image
-                  src="/LogoBlack.png"
+                  src="/logo_black_n.png"
                   alt="Logo"
                   fill
                   className="object-cover dark:hidden"
                 />
                 <Image
-                  src="/LogoWhite.png"
+                  src="/logo_white_n.png"
                   alt="Logo"
                   fill
                   className="object-cover hidden dark:block"
@@ -235,13 +235,13 @@ export default function Header() {
         {/* Logo Izquierda (Móvil) */}
         <div className="relative w-10 h-10 rounded-full overflow-hidden">
           <Image
-            src="/LogoBlack.png"
+            src="/logo_black_n.png"
             alt="Logo"
             fill
             className="object-cover dark:hidden"
           />
           <Image
-            src="/LogoWhite.png"
+            src="/logo_white_n.png"
             alt="Logo"
             fill
             className="object-cover hidden dark:block"

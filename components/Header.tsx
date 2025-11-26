@@ -32,12 +32,12 @@ const socialItems = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    href: "https://linkedin.com/in/tu-perfil",
+    href: "https://www.linkedin.com/in/aram-rojas-182436277/",
   },
   {
     name: "Email",
     icon: Mail,
-    href: "mailto:tu-email@ejemplo.com",
+    href: "mailto:aramrojas11@gmail.com",
   },
 ];
 

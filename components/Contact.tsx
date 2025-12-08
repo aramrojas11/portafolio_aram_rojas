@@ -102,7 +102,7 @@ export default function Contact() {
                 <Input 
                   id="email" 
                   type="email" 
-                  placeholder="aramrojas11@gmail.com" 
+                  placeholder="ejemplo@gmail.com" 
                   className="h-12 bg-background/50 border-primary/20 focus:border-primary text-lg"
                 />
               </div>

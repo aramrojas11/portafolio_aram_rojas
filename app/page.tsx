@@ -3,13 +3,12 @@ import Header from "@/components/Header";
 import { HeroContent } from "@/components/HeroContent";
 import { MouseFollower } from "@/components/MouseFollower";
 import Experience from "@/components/Experience";
-import Projects from "@/components/Projects"; // <--- IMPORTAR
-import Contact from "@/components/Contact"; // <--- IMPORTAR
-
+import Projects from "@/components/Projects"; 
+import Contact from "@/components/Contact"; 
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background text-foreground">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden text-foreground">
       <Header />
       <main className="flex-1 w-full">
         {/*Sección Inicio */}

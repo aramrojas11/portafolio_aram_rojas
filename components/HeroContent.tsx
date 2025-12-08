@@ -1,8 +1,8 @@
 // app/components/HeroContent.tsx
-'use client';
+"use client";
 
-import { motion, Variants } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
+import { motion, Variants } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
 
 // Variantes de animación (sin cambios)
 const containerVariants: Variants = {
@@ -17,7 +17,7 @@ const containerVariants: Variants = {
 
 const textItemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export function HeroContent() {
@@ -30,7 +30,6 @@ export function HeroContent() {
       initial="hidden"
       animate="visible"
     >
-      
       {/* ---- 2. BLOQUE DE NOMBRE Y SKILLS ---- */}
       {/* 'relative z-10' para estar sobre el fondo (si lo hubiera) */}
       {/* Añadimos 'pt-24' para dejar espacio al Header en móvil */}
@@ -42,21 +41,24 @@ export function HeroContent() {
         <h1 className="text-4xl sm:text-7xl lg:text-9xl font-extrabold font-heading text-foreground">
           ARAM ROJAS
         </h1>
-        
+
         {/* Línea divisoria */}
-        <motion.div 
+        <motion.div
           className="w-full h-[5px] bg-foreground my-4 lg:h-2.5" // Más delgada en móvil
           initial={{ width: 0 }}
-          animate={{ width: '70%' }}
-          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          animate={{ width: "70%" }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         />
-        
+
         {/* TAMAÑO RESPONSIVO para Skills */}
         <TypeAnimation
           sequence={[
-            'SOFTWARE ENGINEER', 2000,
-            'DESARROLLADOR DE SOLUCIONES', 2000,
-            'FRONTEND DEVELOPER', 2000,
+            "SOFTWARE ENGINEER",
+            2000,
+            "DESARROLLADOR DE SOLUCIONES",
+            2000,
+            "FRONTEND DEVELOPER",
+            2000,
           ]}
           wrapper="span"
           speed={50}
@@ -74,11 +76,11 @@ export function HeroContent() {
       >
         {/* TAMAÑO RESPONSIVO para Slogan */}
         <p className="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-heading text-foreground uppercase">
-          PROYECTOS CON IMPACTO,<br />
+          PROYECTOS CON IMPACTO,
+          <br />
           SOLUCIONES HECHAS A TU MEDIDA.
         </p>
       </motion.div>
-      
     </motion.div>
   );
 }

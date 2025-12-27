@@ -38,7 +38,7 @@ export function HeroContent() {
         variants={textItemVariants}
       >
         {/* TAMAÑO RESPONSIVO para el Nombre */}
-        <h1 className="text-4xl sm:text-7xl lg:text-9xl font-extrabold font-heading text-foreground">
+        <h1 className="text-4xl sm:text-7xl lg:text-8xl font-extrabold font-heading text-foreground">
           ARAM ROJAS
         </h1>
 

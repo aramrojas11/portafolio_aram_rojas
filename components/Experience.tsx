@@ -68,7 +68,7 @@ export default function Experience() {
   return (
     <section
       id="experiencia"
-      className="w-full py-20 px-6 md:px-16 bg-background"
+      className="w-full py-20 px-6 md:px-16 "
     >
       <div className="max-w-7xl mx-auto">
         {/* Título de la sección */}
@@ -97,7 +97,7 @@ export default function Experience() {
               transition={{ delay: index * 0.1 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative border-b border-border py-8 md:py-12 cursor-default transition-colors hover:bg-accent/5"
+              className="group relative border border-border bg-muted/40 rounded-3xl px-8 py-8 md:py-10 mb-6 cursor-default transition-all hover:bg-muted/60"
             >
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 md:gap-10">
                 {/* 01. Título e Icono */}

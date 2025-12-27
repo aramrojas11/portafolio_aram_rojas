@@ -56,15 +56,15 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
 
   return (
     <div className="relative w-full py-20 md:py-32 flex flex-col items-center">
-      
+
       {/* Contenedor Principal: Flex row alternado */}
       <div className={cn(
         "flex flex-col gap-12 md:gap-20 w-full max-w-7xl px-6 relative z-10",
         isEven ? "md:flex-row" : "md:flex-row-reverse"
       )}>
-        
+
         {/* --- COLUMNA 1: TEXTO (El "Recuadro Atractivo") --- */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
@@ -73,11 +73,11 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         >
           {/* Caja decorativa del texto */}
           <div className="relative p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden group hover:border-white/20 transition-colors">
-            
+
             {/* Gradiente sutil de fondo */}
             <div className={cn("absolute inset-0 bg-linear-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700", project.color)} />
 
-            <div className="relative z-10">
+            <div className=" relative z-10">
               {/* Categoría pequeña estilo 'New Touchpoints' */}
               <span className="inline-block text-xs font-bold tracking-[0.2em] text-primary mb-4 uppercase">
                 {project.category}
@@ -122,8 +122,8 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         </motion.div>
 
         {/* --- COLUMNA 2: IMAGEN (Animación de entrada) --- */}
-        <motion.div 
-          className="flex-1 relative aspect-4/3 md:aspect-square lg:aspect-16/10 rounded-3xl overflow-hidden bg-muted/20"
+        <motion.div
+          className="flex-1 relative aspect-4/3 md:aspect-square lg:aspect-16/10 rounded-3xl overflow-hidden bg-muted/20 border border-white/10"
           initial={{ clipPath: "inset(10% 10% 10% 10%)", scale: 0.9, opacity: 0 }}
           whileInView={{ clipPath: "inset(0% 0% 0% 0%)", scale: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-10%" }}
@@ -131,7 +131,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         >
           {/* PLACEHOLDER MIENTRAS PONES TUS IMÁGENES */}
           {/* Cuando tengas las imágenes, descomenta el componente Image abajo y borra este div */}
-          
+
           <div className={cn("w-full h-full bg-linear-to-br opacity-30", project.color)}></div>
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 font-bold text-4xl uppercase">
             {/* Aquí iría la imagen */}
@@ -145,7 +145,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           /> 
           */}
-          
+
           {/* Overlay sutil al hacer hover (opcional) */}
           <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-500" />
         </motion.div>
@@ -157,11 +157,11 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
 
 export default function Projects() {
   return (
-    <section id="proyectos" className="w-full bg-background overflow-hidden relative">
-      
+    <section id="proyectos" className="w-full  overflow-hidden relative">
+
       {/* Encabezado de Sección */}
       <div className="pt-32 pb-10 px-6 md:px-16 max-w-7xl mx-auto">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

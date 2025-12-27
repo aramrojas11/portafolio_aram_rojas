@@ -97,7 +97,9 @@ export default function Experience() {
               transition={{ delay: index * 0.1 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative border border-border bg-muted/40 rounded-3xl px-8 py-8 md:py-10 mb-6 cursor-default transition-all hover:bg-muted/60"
+              // AGREGAR ESTO: Permite abrir/cerrar con click en móvil
+              onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
+              className="group relative border border-border bg-muted/40 rounded-3xl px-8 py-8 md:py-10 mb-6 cursor-pointer transition-all hover:bg-muted/60" // Cambié cursor-default a cursor-pointer
             >
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 md:gap-10">
                 {/* 01. Título e Icono */}
@@ -125,11 +127,11 @@ export default function Experience() {
                   </p>
                 </div>
 
-                {/* 03. Icono flecha (Decorativo) */}
-                <div className="hidden md:flex justify-end md:w-1/6">
+                {/* 03. Icono flecha (Visible en móvil y desktop) */}
+                <div className="flex justify-end w-full md:w-1/6 mt-4 md:mt-0">
                   <ArrowUpRight
                     className={cn(
-                      "w-12 h-12 transition-transform duration-500",
+                      "w-8 h-8 md:w-12 md:h-12 transition-transform duration-500", // w-8 en móvil, w-12 en desktop
                       hoveredIndex === index
                         ? "text-primary rotate-45"
                         : "text-muted-foreground/30"

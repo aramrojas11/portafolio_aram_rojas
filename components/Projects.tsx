@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Globe, Smartphone, ArrowUpRight } from "lucide-react";
+import React from "react";
+import Image from "next/image"; // Mantener por si usas imágenes en otros
+import { motion } from "framer-motion";
+import { Github, Globe, ArrowUpRight } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 import { Button } from "@/components/ui/button";
 
-// Datos de tus proyectos basados en tu archivo .txt
+// 1. Modificamos los datos para indicar cuál usa Live Preview
 const projects = [
   {
     id: 1,
@@ -16,11 +16,12 @@ const projects = [
     description: "Tienda en línea completa con administración en tiempo real. Gestión de inventario, conexión a WhatsApp y despliegue continuo.",
     tags: ["Next.js", "Supabase", "Tailwind", "Vercel"],
     links: {
-      demo: "https://jaibin-store.vercel.app", // Pon aquí tu link real
+      demo: "https://jaibin-store.vercel.app",
       repo: "https://github.com/aramrojas11/jaibin-store",
     },
-    image: "/projects/jaibin-mockup.png", // <--- RUTA PENDIENTE (ver nota abajo)
-    color: "from-blue-500/20 to-purple-500/20", // Color ambiental para el fondo
+    image: "/projects/projects_logo_light_contact.jpg",
+    color: "from-blue-500/20 to-purple-500/20",
+    hasLivePreview: true, // <--- NUEVA PROPIEDAD ACTIVADA
   },
   {
     id: 2,
@@ -29,11 +30,12 @@ const projects = [
     description: "Sistema móvil para cotización y control de luminarias industriales. Integra GPS nativo, sensores y cálculos de ingeniería en tiempo real.",
     tags: [".NET MAUI", "MVVM", "C#", "GPS Integration"],
     links: {
-      demo: null, // Si no hay demo web, no se muestra
+      demo: null,
       repo: "https://github.com/aramrojas11/lightcontact",
     },
-    image: "/projects/lightcontact-mockup.png", // <--- RUTA PENDIENTE
+    image: "/projects/projects_logo_light_contact.jpg",
     color: "from-emerald-500/20 to-teal-500/20",
+    hasLivePreview: false,
   },
   {
     id: 3,
@@ -45,13 +47,16 @@ const projects = [
       demo: null,
       repo: "https://github.com/aramrojas11/moto-segura",
     },
-    image: "/projects/moto-mockup.png", // <--- RUTA PENDIENTE
+    image: "/projects/projects_logo_moto_segura.png",
     color: "from-orange-500/20 to-red-500/20",
+    hasLivePreview: false,
   },
 ];
 
-// Componente de Tarjeta Individual
-const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => {
+// Definición de tipos para TypeScript (opcional pero recomendada)
+type Project = typeof projects[0] & { hasLivePreview?: boolean };
+
+const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
   const isEven = index % 2 === 0;
 
   return (
@@ -63,7 +68,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         isEven ? "md:flex-row" : "md:flex-row-reverse"
       )}>
 
-        {/* --- COLUMNA 1: TEXTO (El "Recuadro Atractivo") --- */}
+        {/* --- COLUMNA 1: TEXTO --- */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +83,6 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
             <div className={cn("absolute inset-0 bg-linear-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700", project.color)} />
 
             <div className=" relative z-10">
-              {/* Categoría pequeña estilo 'New Touchpoints' */}
               <span className="inline-block text-xs font-bold tracking-[0.2em] text-primary mb-4 uppercase">
                 {project.category}
               </span>
@@ -121,33 +125,57 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
           </div>
         </motion.div>
 
-        {/* --- COLUMNA 2: IMAGEN (Animación de entrada) --- */}
+        {/* --- COLUMNA 2: VISUAL (Iframe o Imagen) --- */}
         <motion.div
-          className="flex-1 relative aspect-4/3 md:aspect-square lg:aspect-16/10 rounded-3xl overflow-hidden bg-muted/20 border border-white/10"
+          className="flex-1 relative aspect-4/3 md:aspect-square lg:aspect-16/10 rounded-3xl overflow-hidden bg-muted/20 border border-white/10 group/visual"
           initial={{ clipPath: "inset(10% 10% 10% 10%)", scale: 0.9, opacity: 0 }}
           whileInView={{ clipPath: "inset(0% 0% 0% 0%)", scale: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // Curva de animación suave
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* PLACEHOLDER MIENTRAS PONES TUS IMÁGENES */}
-          {/* Cuando tengas las imágenes, descomenta el componente Image abajo y borra este div */}
+          {/* LÓGICA DE LIVE PREVIEW vs IMAGEN ESTÁTICA */}
+          {project.hasLivePreview && project.links.demo ? (
+            <div className="relative w-full h-full">
+              {/* IFRAME:
+                   - pointer-events-none: CRUCIAL. Evita que el usuario haga scroll o click DENTRO del iframe.
+                   - grayscale: Le damos un toque elegante en b/n que se colorea al hacer hover.
+                */}
+              <iframe
+                src={project.links.demo}
+                title={`Preview de ${project.title}`}
+                className="w-full h-full border-0 pointer-events-none opacity-80 group-hover/visual:opacity-100 group-hover/visual:grayscale-0 grayscale transition-all duration-700"
+                loading="lazy"
+              />
 
-          <div className={cn("w-full h-full bg-linear-to-br opacity-30", project.color)}></div>
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 font-bold text-4xl uppercase">
-            {/* Aquí iría la imagen */}
-            Image Preview
-          </div>
+              {/* OVERLAY LINK: Capa invisible encima que captura el click */}
+              <a
+                href={project.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-20 flex items-center justify-center bg-transparent cursor-pointer"
+              >
+                {/* Botón flotante que aparece al hover */}
+                <div className="opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover/visual:translate-y-0">
+                  <span className="bg-background/80 backdrop-blur-md text-foreground px-6 py-3 rounded-full font-bold shadow-2xl border border-white/10 flex items-center gap-2">
+                    Visitar Sitio <ArrowUpRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </a>
+            </div>
+          ) : (
+            // --- RENDERIZADO NORMAL PARA PROYECTOS SIN PREVIEW ---
+            <>
+              <div className={cn("w-full h-full bg-linear-to-br opacity-30", project.color)}></div>
+              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 font-bold text-4xl uppercase">
+                {/* Aquí iría la imagen estática cuando la tengas */}
+                <Image src={project.image} alt={project.title} fill className="object-cover" />
+                Image Preview
+              </div>
+              {/* Overlay sutil */}
+              <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            </>
+          )}
 
-          {/* <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          /> 
-          */}
-
-          {/* Overlay sutil al hacer hover (opcional) */}
-          <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-500" />
         </motion.div>
 
       </div>
@@ -157,9 +185,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
 
 export default function Projects() {
   return (
-    <section id="proyectos" className="w-full  overflow-hidden relative">
-
-      {/* Encabezado de Sección */}
+    <section id="proyectos" className="w-full overflow-hidden relative">
       <div className="pt-32 pb-10 px-6 md:px-16 max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
@@ -174,7 +200,6 @@ export default function Projects() {
         </motion.h2>
       </div>
 
-      {/* Lista de Proyectos */}
       <div className="flex flex-col w-full pb-32">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />

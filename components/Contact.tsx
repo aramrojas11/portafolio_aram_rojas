@@ -51,7 +51,7 @@ export default function Contact() {
                 Hablemos
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-md">
-                ¿Tienes un proyecto en mente o una idea innovadora? Estoy listo para colaborar y crear soluciones de alto impacto.
+                ¿Tienes un proyecto en mente? Estoy listo para colaborar y crear soluciones de alto impacto.
               </p>
 
               {/* Links Sociales */}

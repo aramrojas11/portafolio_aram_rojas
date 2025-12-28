@@ -27,7 +27,7 @@ const projects = [
     id: 2,
     title: "LightContact",
     category: "MOBILE INNOVATION",
-    description: "Aplicación móvil con tienda en línea para la cotización personalizada y compra de luminarias, basada en cálculos del espacio del cliente, con pagos integrados mediante Mercado Pago y gestión completa del proceso de envío.Especializada para Exteriores, Comercial, Residencial y Oficinas.",
+    description: "Aplicación móvil con tienda en línea para la cotización personalizada y compra de luminarias, basada en cálculos del espacio del cliente, con pagos integrados mediante Mercado Pago y gestión completa del proceso de envío. Especializada para Exteriores, Comercial, Residencial y Oficinas.",
     tags: [".NET MAUI", "MVVM", "C#", "Community Toolkit"],
     links: {
       demo: null,

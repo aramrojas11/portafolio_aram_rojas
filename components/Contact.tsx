@@ -4,9 +4,7 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// 1. Importamos el icono de Phone (WhatsApp)
 import { Github, Linkedin, Mail, Send, ArrowRight, Phone } from "lucide-react";
-// 2. Importamos reCAPTCHA
 import ReCAPTCHA from "react-google-recaptcha";
 
 const socialLinks = [
@@ -37,7 +35,6 @@ const socialLinks = [
 ];
 
 export default function Contact() {
-  // Estados para el formulario
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,13 +56,11 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validación básica de campos
     if (!formData.name || !formData.email || !formData.message) {
       alert("Por favor completa todos los campos.");
       return;
     }
 
-    // Validación de Captcha
     if (!captchaVal) {
       alert("Por favor verifica que no eres un robot.");
       return;
@@ -73,10 +68,17 @@ export default function Contact() {
 
     setStatus("submitting");
 
-    // Lógica de Envío (Usando Formspree como ejemplo estándar)
-    // DEBES REEMPLAZAR 'TU_ID_DE_FORMSPREE' con tu ID real (ver instrucciones abajo)
+    // LÓGICA SEGURA: Usamos la variable de entorno
+    const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
+    if (!formId) {
+      console.error("Falta el ID de Formspree en las variables de entorno");
+      setStatus("error");
+      return;
+    }
+
     try {
-      const response = await fetch("https://formspree.io/f/xbdjyovj", {
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,8 +86,6 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...formData,
-          // Opcional: Enviar el token del captcha si configuras validación en servidor
-          // "g-recaptcha-response": captchaVal 
         }),
       });
 
@@ -93,7 +93,7 @@ export default function Contact() {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
         setCaptchaVal(null);
-        recaptchaRef.current?.reset(); // Reseteamos el captcha visualmente
+        recaptchaRef.current?.reset();
       } else {
         setStatus("error");
       }
@@ -109,8 +109,6 @@ export default function Contact() {
       className="w-full py-24 md:py-32 px-6 md:px-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
-
-        {/* CONTENEDOR ÚNICO */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +118,7 @@ export default function Contact() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-            {/* --- IZQUIERDA: Hablemos --- */}
+            {/* IZQUIERDA */}
             <div>
               <h2 className="text-5xl md:text-7xl font-extrabold uppercase tracking-tight mb-6 font-heading">
                 Hablemos
@@ -129,7 +127,6 @@ export default function Contact() {
                 ¿Tienes un proyecto en mente? Estoy listo para colaborar y crear soluciones de alto impacto.
               </p>
 
-              {/* Links Sociales */}
               <div className="mt-12 space-y-6">
                 {socialLinks.map((item) => (
                   <a
@@ -149,7 +146,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* --- DERECHA: Formulario --- */}
+            {/* DERECHA (FORMULARIO) */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
@@ -195,13 +192,13 @@ export default function Contact() {
                 />
               </div>
 
-              {/* RECAPTCHA: Asegúrate de poner tu Site Key real abajo */}
+              {/* RECAPTCHA: Ahora lee la variable de entorno */}
               <div className="flex justify-start transform scale-90 origin-left">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="6Lf77zgsAAAAAKWIUNmrJIWb60feaupDOuZOFwhy" // <--- CAMBIAR ESTO
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                   onChange={onCaptchaChange}
-                  theme="dark" // O 'light' dependiendo de tu diseño base
+                  theme="dark"
                 />
               </div>
 

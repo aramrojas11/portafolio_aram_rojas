@@ -13,11 +13,11 @@ const projects = [
     id: 1,
     title: "Jaibin-Store",
     category: "FULLSTACK E-COMMERCE",
-    description: "Tienda en línea completa con administración en tiempo real. Gestión de inventario, conexión a WhatsApp y despliegue continuo.",
-    tags: ["Next.js", "Supabase", "Tailwind", "Vercel"],
+    description: "Tienda en línea completa con administración en tiempo real. Gestión de inventario mediante panel de administración, conexión a WhatsApp y despliegue continuo.",
+    tags: ["Next.js", "Supabase", "Tailwind", "Vercel", "Shadcn UI", "Control de versiones", "Despliegue continuo"],
     links: {
       demo: "https://jaibin-store.vercel.app",
-      repo: "https://github.com/aramrojas11/jaibin-store",
+      // repo: "https://github.com/aramrojas11/jaibin-store",
     },
     image: "/projects/projects_logo_light_contact.jpg",
     color: "from-blue-500/20 to-purple-500/20",
@@ -27,11 +27,11 @@ const projects = [
     id: 2,
     title: "LightContact",
     category: "MOBILE INNOVATION",
-    description: "Sistema móvil para cotización y control de luminarias industriales. Integra GPS nativo, sensores y cálculos de ingeniería en tiempo real.",
-    tags: [".NET MAUI", "MVVM", "C#", "GPS Integration"],
+    description: "Aplicación móvil con tienda en línea para la cotización personalizada y compra de luminarias, basada en cálculos del espacio del cliente, con pagos integrados mediante Mercado Pago y gestión completa del proceso de envío.Especializada para Exteriores, Comercial, Residencial y Oficinas.",
+    tags: [".NET MAUI", "MVVM", "C#", "Community Toolkit"],
     links: {
       demo: null,
-      repo: "https://github.com/aramrojas11/lightcontact",
+      // repo: "https://github.com/aramrojas11/lightcontact",
     },
     image: "/projects/projects_logo_light_contact.jpg",
     color: "from-emerald-500/20 to-teal-500/20",
@@ -42,10 +42,10 @@ const projects = [
     title: "Moto Segura",
     category: "IOT & TELEMETRY",
     description: "Dispositivo de seguridad inteligente para motociclistas. Detecta caídas y accidentes mediante giroscopio y envía alertas GPS en tiempo real.",
-    tags: ["ESP8266", "C++", "MQTT", "Hardware"],
+    tags: ["ESP8266", "C++", "MQTT", "Hardware", "Arduino"],
     links: {
       demo: null,
-      repo: "https://github.com/aramrojas11/moto-segura",
+      // repo: "https://github.com/aramrojas11/moto-segura",
     },
     image: "/projects/projects_logo_moto_segura.png",
     color: "from-orange-500/20 to-red-500/20",
@@ -106,13 +106,14 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
               {/* Botones */}
               <div className="flex gap-4">
-                {project.links.repo && (
+                {/* Logica para redirigir a github en proyectos publicos
+                 {project.links.repo && (
                   <Button variant="outline" className="gap-2 rounded-full h-12 px-6" asChild>
                     <a href={project.links.repo} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4" /> Código
                     </a>
                   </Button>
-                )}
+                )}   */}
                 {project.links.demo && (
                   <Button className="gap-2 rounded-full h-12 px-6" asChild>
                     <a href={project.links.demo} target="_blank" rel="noopener noreferrer">

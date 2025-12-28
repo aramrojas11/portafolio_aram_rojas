@@ -38,19 +38,19 @@ export function HeroContent() {
   return (
     <motion.div
       // AJUSTES DE ESPACIADO:
-      // 1. lg:pt-1 -> Deja solo ~4px arriba en escritorio. Elimina el scroll "negativo".
-      // 2. lg:px-12 -> Margen lateral equilibrado.
+      // 1. lg:pt-1 Deja solo 4px arriba en escritorio
+      // 2. lg:px-12 Margen lateral 
       className="relative z-10 w-full min-h-screen flex flex-col justify-between p-6 sm:p-12 lg:px-12 lg:pt-1 lg:pb-8"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
 
-      {/* 1. NOMBRE (Arriba Izquierda - Pegado al top en Desktop) */}
+      {/* Nombre arriba Izquierda en escritorio */}
       <motion.div
         variants={itemVariants}
-        // Mobile: pt-24 (necesario por el navbar superior)
-        // Desktop: lg:pt-0 (elimina cualquier espacio extra arriba)
+        // Mobile: pt-24
+        // Desktop: lg:pt-0 
         className="flex flex-col justify-start pt-24 lg:pt-0"
       >
         <h1 className="font-black text-foreground uppercase tracking-tighter leading-[0.85]">

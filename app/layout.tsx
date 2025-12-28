@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { cn } from "@/app/lib/utils";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { fontSora, fontGeist } from "@/app/lib/fonts";
-import ParticlesBackground from "@/components/ui/ParticlesBackground"; // <--- IMPORTAR
+import ParticlesBackground from "@/components/ui/ParticlesBackground";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aram Rojas | Software Engineer",
-  description: "Portafolio de desarrollo de software.",
+  title: "Aram Rojas | Portafolio Web",
 };
 
 export default function RootLayout({

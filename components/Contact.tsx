@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Github, Linkedin, Mail, Send, ArrowRight } from "lucide-react";
+// 1. Importamos el icono de Phone (WhatsApp)
+import { Github, Linkedin, Mail, Send, ArrowRight, Phone } from "lucide-react";
+// 2. Importamos reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha";
 
 const socialLinks = [
   {
@@ -25,9 +28,81 @@ const socialLinks = [
     href: "mailto:aramrojas11@gmail.com",
     label: "aramrojas11@gmail.com",
   },
+  {
+    name: "WhatsApp",
+    icon: Phone,
+    href: "https://wa.me/525560599340",
+    label: "+52 55 6059 9340",
+  },
 ];
 
 export default function Contact() {
+  // Estados para el formulario
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [captchaVal, setCaptchaVal] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onCaptchaChange = (val: string | null) => {
+    setCaptchaVal(val);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validación básica de campos
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Por favor completa todos los campos.");
+      return;
+    }
+
+    // Validación de Captcha
+    if (!captchaVal) {
+      alert("Por favor verifica que no eres un robot.");
+      return;
+    }
+
+    setStatus("submitting");
+
+    // Lógica de Envío (Usando Formspree como ejemplo estándar)
+    // DEBES REEMPLAZAR 'TU_ID_DE_FORMSPREE' con tu ID real (ver instrucciones abajo)
+    try {
+      const response = await fetch("https://formspree.io/f/xbdjyovj", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          ...formData,
+          // Opcional: Enviar el token del captcha si configuras validación en servidor
+          // "g-recaptcha-response": captchaVal 
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setCaptchaVal(null);
+        recaptchaRef.current?.reset(); // Reseteamos el captcha visualmente
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
+  };
+
   return (
     <section
       id="contacto"
@@ -75,13 +150,17 @@ export default function Contact() {
             </div>
 
             {/* --- DERECHA: Formulario --- */}
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                   Nombre
                 </label>
                 <Input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Tu nombre"
+                  required
                   className="h-12 bg-background/50 border-primary/20 focus:border-primary text-lg"
                 />
               </div>
@@ -91,8 +170,12 @@ export default function Contact() {
                   Email
                 </label>
                 <Input
+                  name="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="ejemplo@gmail.com"
+                  required
                   className="h-12 bg-background/50 border-primary/20 focus:border-primary text-lg"
                 />
               </div>
@@ -102,15 +185,43 @@ export default function Contact() {
                   Mensaje
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={5}
-                  className="flex w-full rounded-md border border-primary/20 bg-background/50 px-3 py-2 text-lg resize-none"
+                  required
+                  className="flex w-full rounded-md border border-primary/20 bg-background/50 px-3 py-2 text-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="Cuéntame sobre tu proyecto..."
                 />
               </div>
 
-              <Button size="lg" className="w-full h-14 text-lg gap-2 rounded-full">
-                Enviar Mensaje <Send className="w-5 h-5" />
+              {/* RECAPTCHA: Asegúrate de poner tu Site Key real abajo */}
+              <div className="flex justify-start transform scale-90 origin-left">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="6Lf77zgsAAAAAKWIUNmrJIWb60feaupDOuZOFwhy" // <--- CAMBIAR ESTO
+                  onChange={onCaptchaChange}
+                  theme="dark" // O 'light' dependiendo de tu diseño base
+                />
+              </div>
+
+              <Button
+                size="lg"
+                disabled={status === "submitting" || status === "success"}
+                className="w-full h-14 text-lg gap-2 rounded-full"
+              >
+                {status === "submitting" ? (
+                  "Enviando..."
+                ) : status === "success" ? (
+                  "¡Mensaje Enviado!"
+                ) : (
+                  <>Enviar Mensaje <Send className="w-5 h-5" /></>
+                )}
               </Button>
+
+              {status === "error" && (
+                <p className="text-red-500 text-sm mt-2">Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>
+              )}
             </form>
 
           </div>
